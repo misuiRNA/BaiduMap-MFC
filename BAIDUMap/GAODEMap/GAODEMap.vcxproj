@@ -47,6 +47,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
+    <IncludePath>$(VCInstallDir)include;$(ProjectDir)include;$(VCInstallDir)atlmfc\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -99,36 +100,33 @@
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <Text Include="ReadMe.txt" />
+    <ClInclude Include="include\box_lng.h" />
+    <ClInclude Include="include\explorer1.h" />
+    <ClInclude Include="include\BAIDUMap.h" />
+    <ClInclude Include="include\BAIDUMapDlg.h" />
+    <ClInclude Include="include\Resource.h" />
+    <ClInclude Include="include\stdafx.h" />
+    <ClInclude Include="include\targetver.h" />
+    <ClInclude Include="include\WebPage.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="box_lng.h" />
-    <ClInclude Include="explorer1.h" />
-    <ClInclude Include="BAIDUMap.h" />
-    <ClInclude Include="BAIDUMapDlg.h" />
-    <ClInclude Include="Resource.h" />
-    <ClInclude Include="stdafx.h" />
-    <ClInclude Include="targetver.h" />
-    <ClInclude Include="WebPage.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="box_lng.cpp" />
-    <ClCompile Include="explorer1.cpp" />
-    <ClCompile Include="BAIDUMap.cpp" />
-    <ClCompile Include="BAIDUMapDlg.cpp" />
-    <ClCompile Include="stdafx.cpp">
+    <ClCompile Include="src\box_lng.cpp" />
+    <ClCompile Include="src\explorer1.cpp" />
+    <ClCompile Include="src\BAIDUMap.cpp" />
+    <ClCompile Include="src\BAIDUMapDlg.cpp" />
+    <ClCompile Include="src\stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="WebPage.cpp" />
+    <ClCompile Include="src\WebPage.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="BAIDUMap.rc" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="MarkMap.js" />
+    <None Include="script\MarkMap.js" />
     <None Include="res\BAIDUMap.rc2" />
-    <None Include="test.html" />
+    <None Include="script\test.html" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\BAIDUMap.ico" />

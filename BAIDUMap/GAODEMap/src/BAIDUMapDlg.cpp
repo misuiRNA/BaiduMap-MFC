@@ -86,7 +86,7 @@ BOOL CBAIDUMapDlg::OnInitDialog()
 	CString strURL;//htm文件的全路径
 	char chCurtPath[MAX_PATH];//当前目录
 	GetCurrentDirectory(MAX_PATH, chCurtPath);//获取当前目录，并存在chCurtPath中
-	strURL = "file://"+(CString)chCurtPath + "/test.html";//将chCurtDrct变量强制转化成CString,并拼接成全路径
+	strURL = "file://"+(CString)chCurtPath + "../script/test.html";//将chCurtDrct变量强制转化成CString,并拼接成全路径
 	Browser.Navigate(strURL, NULL, NULL, NULL, NULL);
 
 	//设置输入框默认值

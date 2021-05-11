@@ -15,60 +15,57 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="ReadMe.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="stdafx.h">
+    <ClInclude Include="include\BAIDUMap.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="targetver.h">
+    <ClInclude Include="include\BAIDUMapDlg.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Resource.h">
+    <ClInclude Include="include\box_lng.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="explorer1.h">
+    <ClInclude Include="include\explorer1.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="box_lng.h">
+    <ClInclude Include="include\Resource.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="WebPage.h">
+    <ClInclude Include="include\stdafx.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="BAIDUMap.h">
+    <ClInclude Include="include\targetver.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="BAIDUMapDlg.h">
+    <ClInclude Include="include\WebPage.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="stdafx.cpp">
+    <ClCompile Include="src\BAIDUMap.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="explorer1.cpp">
+    <ClCompile Include="src\BAIDUMapDlg.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="box_lng.cpp">
+    <ClCompile Include="src\box_lng.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="WebPage.cpp">
+    <ClCompile Include="src\explorer1.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="BAIDUMap.cpp">
+    <ClCompile Include="src\stdafx.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="BAIDUMapDlg.cpp">
+    <ClCompile Include="src\WebPage.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="MarkMap.js" />
-    <None Include="test.html" />
     <None Include="res\BAIDUMap.rc2">
       <Filter>资源文件</Filter>
     </None>
+    <None Include="script\test.html" />
+    <None Include="script\MarkMap.js" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\BAIDUMap.ico">
