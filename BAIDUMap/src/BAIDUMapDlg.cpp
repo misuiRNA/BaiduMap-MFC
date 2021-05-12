@@ -3,8 +3,8 @@
 //
 
 #include "stdafx.h"
-#include "BAIDUMap.h"
-#include "BAIDUMapDlg.h"
+#include "BaiduMap.h"
+#include "BaiduMapDlg.h"
 #include "afxdialogex.h"
 #include "WebPage.h"
 

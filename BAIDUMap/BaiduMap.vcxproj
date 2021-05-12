@@ -14,7 +14,7 @@
     <ProjectGuid>{5BC5E987-4FDE-42D0-AB94-CD9F46165EFB}</ProjectGuid>
     <RootNamespace>BaiduMap</RootNamespace>
     <Keyword>MFCProj</Keyword>
-    <ProjectName>BAIDUMap</ProjectName>
+    <ProjectName>BaiduMap</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -103,8 +103,8 @@
   <ItemGroup>
     <ClInclude Include="box_lng.h" />
     <ClInclude Include="explorer1.h" />
-    <ClInclude Include="include\BAIDUMap.h" />
-    <ClInclude Include="include\BAIDUMapDlg.h" />
+    <ClInclude Include="include\BaiduMap.h" />
+    <ClInclude Include="include\BaiduMapDlg.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
@@ -113,8 +113,8 @@
   <ItemGroup>
     <ClCompile Include="box_lng.cpp" />
     <ClCompile Include="explorer1.cpp" />
-    <ClCompile Include="src\BAIDUMap.cpp" />
-    <ClCompile Include="src\BAIDUMapDlg.cpp" />
+    <ClCompile Include="src\BaiduMap.cpp" />
+    <ClCompile Include="src\BaiduMapDlg.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
@@ -122,22 +122,22 @@
     <ClCompile Include="src\WebPage.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="BAIDUMap.rc" />
+    <ResourceCompile Include="BaiduMap.rc" />
   </ItemGroup>
   <ItemGroup>
     <None Include="script\MarkMap.js" />
-    <None Include="res\BAIDUMap.rc2" />
+    <None Include="res\BaiduMap.rc2" />
     <None Include="script\test.html" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="res\BAIDUMap.ico" />
+    <Image Include="res\BaiduMap.ico" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties RESOURCE_FILE="BAIDUMap.rc" _x007B_8856F961-340A-11D0-A96B-00C04FD705A2_x007D_="CExplorer1" _x007B_8BD21D10-EC42-11CE-9E0D-00AA006002F3_x007D_="CBox_lng" />
+      <UserProperties RESOURCE_FILE="BaiduMap.rc" _x007B_8856F961-340A-11D0-A96B-00C04FD705A2_x007D_="CExplorer1" _x007B_8BD21D10-EC42-11CE-9E0D-00AA006002F3_x007D_="CBox_lng" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>

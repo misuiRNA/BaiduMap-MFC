@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BAIDUMap", "BaiduMap\GAODEMap.vcxproj", "{5BC5E987-4FDE-42D0-AB94-CD9F46165EFB}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BAIDUMap", "BaiduMap\BaiduMap.vcxproj", "{5BC5E987-4FDE-42D0-AB94-CD9F46165EFB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
