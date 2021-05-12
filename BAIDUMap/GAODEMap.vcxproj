@@ -12,7 +12,7 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{5BC5E987-4FDE-42D0-AB94-CD9F46165EFB}</ProjectGuid>
-    <RootNamespace>GAODEMap</RootNamespace>
+    <RootNamespace>BaiduMap</RootNamespace>
     <Keyword>MFCProj</Keyword>
     <ProjectName>BAIDUMap</ProjectName>
   </PropertyGroup>
@@ -44,6 +44,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
+    <IncludePath>$(VCInstallDir)include;$(VCInstallDir)atlmfc\include;$(WindowsSDK_IncludePath);$(ProjectDir);$(ProjectDir)/include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -136,7 +137,7 @@
   </ImportGroup>
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties RESOURCE_FILE="GAODEMap.rc" _x007B_8856F961-340A-11D0-A96B-00C04FD705A2_x007D_="CExplorer1" _x007B_8BD21D10-EC42-11CE-9E0D-00AA006002F3_x007D_="CBox_lng" />
+      <UserProperties RESOURCE_FILE="BAIDUMap.rc" _x007B_8856F961-340A-11D0-A96B-00C04FD705A2_x007D_="CExplorer1" _x007B_8BD21D10-EC42-11CE-9E0D-00AA006002F3_x007D_="CBox_lng" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>
