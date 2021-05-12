@@ -21,22 +21,22 @@
     <ClInclude Include="include\BAIDUMapDlg.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="include\box_lng.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="include\explorer1.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Resource.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="include\stdafx.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="include\targetver.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="include\WebPage.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="box_lng.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="explorer1.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
@@ -47,16 +47,16 @@
     <ClCompile Include="src\BAIDUMapDlg.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="src\box_lng.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="src\explorer1.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="src\stdafx.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="src\WebPage.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="box_lng.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="explorer1.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
