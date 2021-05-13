@@ -103,8 +103,9 @@
   <ItemGroup>
     <ClInclude Include="box_lng.h" />
     <ClInclude Include="explorer1.h" />
-    <ClInclude Include="include\BaiduMap.h" />
+    <ClInclude Include="include\BaiduMapApp.h" />
     <ClInclude Include="include\BaiduMapDlg.h" />
+    <ClInclude Include="include\CAboutDlg.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
@@ -113,8 +114,9 @@
   <ItemGroup>
     <ClCompile Include="box_lng.cpp" />
     <ClCompile Include="explorer1.cpp" />
-    <ClCompile Include="src\BaiduMap.cpp" />
+    <ClCompile Include="src\BaiduMapApp.cpp" />
     <ClCompile Include="src\BaiduMapDlg.cpp" />
+    <ClCompile Include="src\CAboutDlg.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>

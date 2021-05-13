@@ -1,32 +1,20 @@
-
-// BAIDUMapDlg.h : 头文件
-//
-
 #pragma once
 #include "explorer1.h"
 #include "box_lng.h"
 #include "afxwin.h"
 
 
-// CBAIDUMapDlg 对话框
 class CBAIDUMapDlg : public CDialogEx, public IDispatch
 {
-// 构造
 public:
-	CBAIDUMapDlg(CWnd* pParent = NULL);	// 标准构造函数
-
-// 对话框数据
 	enum { IDD = IDD_BAIDUMAP_DIALOG };
 
+	CBAIDUMapDlg(CWnd* pParent = NULL);
 	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);	// DDX/DDV 支持
-
-
-// 实现
+	virtual void DoDataExchange(CDataExchange* pDX);
 protected:
 	HICON m_hIcon;
 
-	// 生成的消息映射函数
 	virtual BOOL OnInitDialog();
 	afx_msg void OnSysCommand(UINT nID, LPARAM lParam);
 	afx_msg void OnPaint();
@@ -41,6 +29,7 @@ public:
 	afx_msg void OnBnClickedButton2();
 	void ShowPointString(const wchar_t *msg);
 	CEdit pointsEdit;
+
 	afx_msg void OnBnClickedButton3();
 	afx_msg void OnBnClickedButton4();
 	afx_msg void OnBnClickedButton5();
@@ -55,4 +44,10 @@ public:
 	virtual ULONG STDMETHODCALLTYPE Release();
 	DECLARE_EVENTSINK_MAP()
 	void DocumentCompleteExplorer1(LPDISPATCH pDisp, VARIANT* URL);
+};
+
+enum
+{
+    FUNCTION_ShowMessageBox = 1,
+    FUNCTION_GetProcessID = 2,
 };
