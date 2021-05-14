@@ -2,6 +2,8 @@
 #include "explorer1.h"
 #include "box_lng.h"
 #include "afxwin.h"
+#include "WebPage.h"
+#include "JavaScriptAgent.h"
 
 
 class CBAIDUMapDlg : public CDialogEx, public IDispatch
@@ -21,15 +23,15 @@ protected:
 	afx_msg HCURSOR OnQueryDragIcon();
 	DECLARE_MESSAGE_MAP()
 public:
-	CExplorer1 Browser;
-	afx_msg void OnBnClickedButton1();
+	JavaScriptAgent jsAgent;
+
 	CEdit lngBox;
 	CEdit latBox;
 	CEdit pointBox;
-	afx_msg void OnBnClickedButton2();
-	void ShowPointString(const wchar_t *msg);
 	CEdit pointsEdit;
 
+	afx_msg void OnBnClickedButton1();
+	afx_msg void OnBnClickedButton2();
 	afx_msg void OnBnClickedButton3();
 	afx_msg void OnBnClickedButton4();
 	afx_msg void OnBnClickedButton5();
@@ -44,6 +46,7 @@ public:
 	virtual ULONG STDMETHODCALLTYPE Release();
 	DECLARE_EVENTSINK_MAP()
 	void DocumentCompleteExplorer1(LPDISPATCH pDisp, VARIANT* URL);
+	void ShowPointString(const wchar_t *msg);
 };
 
 enum

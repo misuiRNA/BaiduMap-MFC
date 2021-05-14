@@ -2,7 +2,6 @@
 #include "BaiduMapApp.h"
 #include "BaiduMapDlg.h"
 #include "afxdialogex.h"
-#include "WebPage.h"
 #include "CAboutDlg.h"
 
 #ifdef _DEBUG
@@ -19,7 +18,8 @@ CBAIDUMapDlg::CBAIDUMapDlg(CWnd* pParent /*=NULL*/)
 void CBAIDUMapDlg::DoDataExchange(CDataExchange* pDX)
 {
 	CDialogEx::DoDataExchange(pDX);
-	DDX_Control(pDX, IDC_EXPLORER1, Browser);
+	CExplorer1& browser = jsAgent.getBrowser();
+	DDX_Control(pDX, IDC_EXPLORER1, browser);
 	DDX_Control(pDX, IDC_EDIT1, lngBox);
 	DDX_Control(pDX, IDC_EDIT2, latBox);
 	DDX_Control(pDX, IDC_EDIT3, pointBox);
@@ -42,18 +42,11 @@ END_MESSAGE_MAP()
 BOOL CBAIDUMapDlg::OnInitDialog()
 {
 	CDialogEx::OnInitDialog();
+	jsAgent.init();
 
-	char chCurtPath[MAX_PATH];
-	GetCurrentDirectory(MAX_PATH, chCurtPath);
-	CString htmlPageURL = "file://"+(CString)chCurtPath + "../script/test.html";
-	Browser.Navigate(htmlPageURL, NULL, NULL, NULL, NULL);
+	SetDlgItemText(IDC_EDIT1,"108.95357");
+	SetDlgItemText(IDC_EDIT2,"34.26732");
 
-	SetDlgItemText(IDC_EDIT1,"108.95357");//IDC_EDIT1你的edit控件ID
-	SetDlgItemText(IDC_EDIT2,"34.26732");//IDC_EDIT1你的edit控件ID
-
-	// 将“关于...”菜单项添加到系统菜单中。
-
-	// IDM_ABOUTBOX 必须在系统命令范围内。
 	ASSERT((IDM_ABOUTBOX & 0xFFF0) == IDM_ABOUTBOX);
 	ASSERT(IDM_ABOUTBOX < 0xF000);
 
@@ -71,11 +64,9 @@ BOOL CBAIDUMapDlg::OnInitDialog()
 		}
 	}
 
-	// 设置此对话框的图标。当应用程序主窗口不是对话框时，框架将自动
-	//  执行此操作
-	SetIcon(m_hIcon, TRUE);			// 设置大图标
-	SetIcon(m_hIcon, FALSE);		// 设置小图标
-	return TRUE;  // 除非将焦点设置到控件，否则返回 TRUE
+	SetIcon(m_hIcon, TRUE);
+	SetIcon(m_hIcon, FALSE);
+	return TRUE;
 }
 
 void CBAIDUMapDlg::OnSysCommand(UINT nID, LPARAM lParam)
@@ -128,7 +119,7 @@ void CBAIDUMapDlg::ShowPointString(const wchar_t *msg) {
     WideCharToMultiByte(CP_OEMCP, 0, msg, wcslen(msg), pCStrKey, pSize, NULL, NULL);
     pCStrKey[pSize] = '\0';
 	SetDlgItemText(IDC_EDIT3,pCStrKey);//IDC_EDIT1你的edit控件ID
-	return;
+	delete pCStrKey;
 }
 
 HRESULT STDMETHODCALLTYPE CBAIDUMapDlg::GetTypeInfoCount(UINT *pctinfo)
@@ -142,10 +133,10 @@ HRESULT STDMETHODCALLTYPE CBAIDUMapDlg::GetTypeInfo(UINT iTInfo, LCID lcid, ITyp
 //JavaScript调用这个对象的方法时，会把方法名，放到rgszNames中，我们须要给这种方法名拟定一个唯一的数字ID。用rgDispId传回给它
 //同理JavaScript存取这个对象的属性时。会把属性名放到rgszNames中，我们须要给这个属性名拟定一个唯一的数字ID，用rgDispId传回给它
 //紧接着JavaScript会调用Invoke。并把这个ID作为參数传递进来
-HRESULT STDMETHODCALLTYPE CBAIDUMapDlg::GetIDsOfNames(REFIID riid, LPOLESTR *rgszNames, UINT cNames, LCID lcid, DISPID *rgDispId)
+HRESULT STDMETHODCALLTYPE CBAIDUMapDlg::GetIDsOfNames(REFIID riid, LPOLESTR *rgszNames, UINT cNameNum, LCID lcid, DISPID *rgDispId)
 {
     //rgszNames是个字符串数组。cNames指明这个数组中有几个字符串。假设不是1个字符串。忽略它
-    if (cNames != 1)
+    if (cNameNum != 1)
         return E_NOTIMPL;
     //假设字符串是ShowMessageBox。说明JavaScript在调用我这个对象的ShowMessageBox方法。我就把我拟定的ID通过rgDispId告诉它
     if (wcscmp(rgszNames[0], L"ShowPointString") == 0)
@@ -159,7 +150,6 @@ HRESULT STDMETHODCALLTYPE CBAIDUMapDlg::GetIDsOfNames(REFIID riid, LPOLESTR *rgs
 // register cpp-function called by JavaScritp
 HRESULT STDMETHODCALLTYPE CBAIDUMapDlg::Invoke(DISPID dispIdMember, REFIID riid, LCID lcid, WORD wFlags, DISPPARAMS *pDispParams, VARIANT *pVarResult, EXCEPINFO *pExcepInfo, UINT *puArgErr)
 {
-    //通过ID我就知道JavaScript想调用哪个方法
     if (dispIdMember == FUNCTION_ShowMessageBox)
     {
         if (pDispParams->cArgs != 1)
@@ -202,20 +192,13 @@ void CBAIDUMapDlg::OnBnClickedButton1()
 	CString lat;
 	lngBox.GetWindowText(lng);
 	latBox.GetWindowText(lat);
-	CWebPage web;
-	web.SetDocument(Browser.get_Document());
-	const CString funcName("showMap");
-	CComVariant varResult;
-	web.CallJScript(funcName, lng, lat, &varResult);
+	jsAgent.callJSFunc("showMap", lng, lat);
 }
 
 void CBAIDUMapDlg::OnBnClickedButton2()
 {
-	CWebPage web;
-	web.SetDocument(Browser.get_Document());
-	const CString funcName("getCenterPoint");
 	CComVariant varResult;
-	web.CallJScript(funcName, &varResult);
+	jsAgent.callJSFunc("getCenterPoint", varResult);
 	CString str;
 	str=varResult.bstrVal;
 	SetDlgItemText(IDC_EDIT3, str);
@@ -225,16 +208,13 @@ void CBAIDUMapDlg::OnBnClickedButton3()
 {
 	CString points;
 	pointsEdit.GetWindowText(points);
-	CWebPage web;
-	web.SetDocument(Browser.get_Document());
-	const CString funcName("pinpoints");
-	CComVariant varResult;
-	web.CallJScript(funcName, points, &varResult);
+	jsAgent.callJSFunc("pinpoints", points);
 }
 
 void CBAIDUMapDlg::OnBnClickedButton4()
 {
-	CComQIPtr<IHTMLDocument2> document = Browser.get_Document();
+	CExplorer1& browser = jsAgent.getBrowser();
+	CComQIPtr<IHTMLDocument2> document = browser.get_Document();
     CComDispatchDriver script;
     document->get_Script(&script);
     CComVariant var(static_cast<IDispatch*>(this));
@@ -245,11 +225,7 @@ void CBAIDUMapDlg::OnBnClickedButton5()
 {
 	CString points;
 	pointsEdit.GetWindowText(points);
-	CWebPage web;
-	web.SetDocument(Browser.get_Document());
-	const CString funcName("pinPolyline");
-	CComVariant varResult;
-	web.CallJScript(funcName, points, &varResult);
+	jsAgent.callJSFunc("pinPolyline", points);
 }
 
 
@@ -257,11 +233,7 @@ void CBAIDUMapDlg::OnBnClickedButton6()
 {
 	CString points;
 	pointsEdit.GetWindowText(points);
-	CWebPage web;
-	web.SetDocument(Browser.get_Document());
-	const CString funcName("pinPolygon");
-	CComVariant varResult;
-	web.CallJScript(funcName, points, &varResult);
+	jsAgent.callJSFunc("pinPolygon", points);
 }
 
 BEGIN_EVENTSINK_MAP(CBAIDUMapDlg, CDialogEx)
@@ -271,7 +243,8 @@ END_EVENTSINK_MAP()
 // send cpp object to JavaScript after the page uploaded
 void CBAIDUMapDlg::DocumentCompleteExplorer1(LPDISPATCH pDisp, VARIANT* URL)
 {
-	CComQIPtr<IHTMLDocument2> document = Browser.get_Document();
+	CExplorer1& browser = jsAgent.getBrowser();
+	CComQIPtr<IHTMLDocument2> document = browser.get_Document();
     CComDispatchDriver script;
     document->get_Script(&script);
     CComVariant var(static_cast<IDispatch*>(this));
