@@ -17,9 +17,9 @@ public:
     JavaScriptAgent();
 	void init();
 
-	void callJSFunc(const CString& jsFuncName, CComVariant& varResult=CComVariant());
-	void JavaScriptAgent::callJSFunc(const CString& jsFuncName, const CString& arg);
-	void JavaScriptAgent::callJSFunc(const CString& jsFuncName, const CString& arg1, const CString& arg2);
+	void callJSFunc(const CString& jsFuncName, CComVariant& result, const CString& arg1 = *(CString*)nullptr, const CString& arg2 = *(CString*)nullptr);
+	void callJSFunc(const CString& jsFuncName, const CString& arg1 = *(CString*)nullptr, const CString& arg2 = *(CString*)nullptr);
 	CExplorer1& getBrowser();
-
+private:
+	CString getPagePath();
 }; 

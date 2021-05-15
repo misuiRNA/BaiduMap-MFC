@@ -14,26 +14,40 @@ JavaScriptAgent::JavaScriptAgent()
 
 void JavaScriptAgent::init()
 {
-	char chCurtPath[MAX_PATH];
-	GetCurrentDirectory(MAX_PATH, chCurtPath);
-	CString htmlPageURL = "file://"+(CString)chCurtPath + "../script/test.html";
-	browser.Navigate(htmlPageURL, NULL, NULL, NULL, NULL);
+	CString&& htmlPagePath = getPagePath();
+	browser.Navigate(htmlPagePath, NULL, NULL, NULL, NULL);
 	web.SetDocument(browser.get_Document());
 }
 
-void JavaScriptAgent::callJSFunc(const CString& jsFuncName, CComVariant& varResult)
+CString JavaScriptAgent::getPagePath()
 {
-	web.CallJScript(jsFuncName, &varResult);
+	char chCurtPath[MAX_PATH];
+	GetCurrentDirectory(MAX_PATH, chCurtPath);
+	CString htmlPagePath = "file://"+(CString)chCurtPath + "../script/MapPage.html";
+	return htmlPagePath;
 }
 
-void JavaScriptAgent::callJSFunc(const CString& jsFuncName, const CString& arg)
+// TODO try to optimize
+void JavaScriptAgent::callJSFunc(const CString& jsFuncName, CComVariant& result, const CString& arg1, const CString& arg2)
 {
-	web.CallJScript(jsFuncName, arg);
+	if (nullptr == &arg1)
+	{
+		web.CallJScript(jsFuncName, &result);
+	}
+	else if (nullptr == &arg2)
+	{
+		web.CallJScript(jsFuncName, arg1, &result);
+	}
+	else
+	{
+		web.CallJScript(jsFuncName, arg1, arg2);
+	}
 }
 
 void JavaScriptAgent::callJSFunc(const CString& jsFuncName, const CString& arg1, const CString& arg2)
 {
-	web.CallJScript(jsFuncName, arg1, arg2);
+	CComVariant varResult;
+	callJSFunc(jsFuncName, varResult, arg1, arg2);
 }
 
 CExplorer1& JavaScriptAgent::getBrowser()
