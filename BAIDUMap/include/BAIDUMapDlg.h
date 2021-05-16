@@ -4,6 +4,7 @@
 #include "afxwin.h"
 #include "WebPage.h"
 #include "JavaScriptAgent.h"
+#include "JSCallCppInvoker.h"
 
 
 class CBAIDUMapDlg : public CDialogEx

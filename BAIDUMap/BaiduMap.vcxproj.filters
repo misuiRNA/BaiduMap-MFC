@@ -45,6 +45,9 @@
     <ClInclude Include="include\JavaScriptAgent.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="include\JSCallCppInvoker.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\BAIDUMapDlg.cpp">
@@ -69,6 +72,9 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="src\JavaScriptAgent.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\JSCallCppInvoker.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

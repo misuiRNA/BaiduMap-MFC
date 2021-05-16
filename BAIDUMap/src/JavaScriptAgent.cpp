@@ -2,7 +2,6 @@
 #include "JavaScriptAgent.h"
 #include "afxdialogex.h"
 #include <stdarg.h>
-#include "BaiduMapDlg.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -57,46 +56,39 @@ CExplorer1& JavaScriptAgent::getBrowser()
     return browser;
 }
 
-
-HRESULT STDMETHODCALLTYPE JavaScriptAgent::GetTypeInfoCount(UINT *pctinfo)
-{
-    return E_NOTIMPL;
-}
-HRESULT STDMETHODCALLTYPE JavaScriptAgent::GetTypeInfo(UINT iTInfo, LCID lcid, ITypeInfo **ppTInfo)
-{
-    return E_NOTIMPL;
-}
-//JavaScript调用这个对象的方法时，会把方法名，放到rgszNames中，我们须要给这种方法名拟定一个唯一的数字ID。用rgDispId传回给它
-//同理JavaScript存取这个对象的属性时。会把属性名放到rgszNames中，我们须要给这个属性名拟定一个唯一的数字ID，用rgDispId传回给它
-//紧接着JavaScript会调用Invoke。并把这个ID作为參数传递进来
 HRESULT STDMETHODCALLTYPE JavaScriptAgent::GetIDsOfNames(REFIID riid, LPOLESTR *rgszNames, UINT cNameNum, LCID lcid, DISPID *rgDispId)
 {
     if (cNameNum != 1)
+	{
         return E_NOTIMPL;
-    if (wcscmp(rgszNames[0], L"ShowPointString") == 0)
-    {
-        *rgDispId = ShowMessageBox;
-        return S_OK;
-    }
-    else
-        return E_NOTIMPL;
+	}
+	for (auto entity : jsCallCppFuncIdMap)
+	{
+		if (wcscmp(rgszNames[0], entity.first) == 0)
+		{
+			*rgDispId = entity.second;
+			return S_OK;
+		}
+	}
+	return E_NOTIMPL;
 }
-// register cpp-function called by JavaScritp
+
 HRESULT STDMETHODCALLTYPE JavaScriptAgent::Invoke(DISPID dispIdMember, REFIID riid, LCID lcid, WORD wFlags, DISPPARAMS *pDispParams, VARIANT *pVarResult, EXCEPINFO *pExcepInfo, UINT *puArgErr)
 {
-    if (dispIdMember == ShowMessageBox)
+	if (pDispParams->cArgs != 1 || pDispParams->rgvarg[0].vt != VT_BSTR)
     {
-        if (pDispParams->cArgs != 1)
-            return E_NOTIMPL;
-        if (pDispParams->rgvarg[0].vt != VT_BSTR)
-            return E_NOTIMPL;
-		//ShowPointString(pDispParams->rgvarg[0].bstrVal);
-		pDispParams->rgvarg[0].bstrVal;
-        callCppFunc((CppFuncId)dispIdMember,*pDispParams);
-        return S_OK;
-    }
-    else
         return E_NOTIMPL;
+    }
+
+	if (jsCallCppInvokerMap.find((FunctionIdType)dispIdMember) != jsCallCppInvokerMap.end())
+	{
+		jsCallCppInvokerMap[(FunctionIdType)dispIdMember]->invoke(*pDispParams);
+        return S_OK;
+	}
+    else
+	{
+        return E_NOTIMPL;
+	}
 }
 
 HRESULT STDMETHODCALLTYPE JavaScriptAgent::QueryInterface(REFIID riid, void **ppvObject)
@@ -110,6 +102,15 @@ HRESULT STDMETHODCALLTYPE JavaScriptAgent::QueryInterface(REFIID riid, void **pp
         return E_NOINTERFACE;
 }
 
+HRESULT STDMETHODCALLTYPE JavaScriptAgent::GetTypeInfoCount(UINT *pctinfo)
+{
+    return E_NOTIMPL;
+}
+HRESULT STDMETHODCALLTYPE JavaScriptAgent::GetTypeInfo(UINT iTInfo, LCID lcid, ITypeInfo **ppTInfo)
+{
+    return E_NOTIMPL;
+}
+
 ULONG STDMETHODCALLTYPE JavaScriptAgent::AddRef()
 {
     return 1;
@@ -118,12 +119,6 @@ ULONG STDMETHODCALLTYPE JavaScriptAgent::AddRef()
 ULONG STDMETHODCALLTYPE JavaScriptAgent::Release()
 {
     return 1;
-}
-
-
-void JavaScriptAgent::callCppFunc(CppFuncId funcId, DISPPARAMS& params)
-{
-	cppInvoke->ShowPointString(params.rgvarg[0].bstrVal);
 }
 
 void JavaScriptAgent::confJavascriptInvoker()
@@ -135,7 +130,8 @@ void JavaScriptAgent::confJavascriptInvoker()
     script.Invoke1(L"SaveCppObject", &var);
 }
 
-void JavaScriptAgent::regJSCallCppFunc(CBAIDUMapDlg* invoke)
+void JavaScriptAgent::regJSCallCppFunc(JSCallCppInvoker* invoker)
 {
-	cppInvoke = invoke;
+	jsCallCppFuncIdMap[invoker->funcName] = invoker->funcId;
+	jsCallCppInvokerMap[invoker->funcId] = invoker;
 }

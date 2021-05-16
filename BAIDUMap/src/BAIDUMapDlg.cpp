@@ -167,5 +167,6 @@ END_EVENTSINK_MAP()
 void CBAIDUMapDlg::DocumentCompleteExplorer1(LPDISPATCH pDisp, VARIANT* URL)
 {
 	jsAgent.confJavascriptInvoker();
-	jsAgent.regJSCallCppFunc(this);
+	JSCallCppInvoker* invoker = new JSCallCppInvoker(L"ShowPointString", this, &CBAIDUMapDlg::ShowPointString);
+	jsAgent.regJSCallCppFunc(invoker);
 }
