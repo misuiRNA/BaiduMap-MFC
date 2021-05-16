@@ -11,28 +11,28 @@
 class CBox_lng : public CWnd
 {
 protected:
-	DECLARE_DYNCREATE(CBox_lng)
+    DECLARE_DYNCREATE(CBox_lng)
 public:
-	CLSID const& GetClsid()
-	{
-		static CLSID const clsid
-			= { 0x8BD21D10, 0xEC42, 0x11CE, { 0x9E, 0xD, 0x0, 0xAA, 0x0, 0x60, 0x2, 0xF3 } };
-		return clsid;
-	}
-	virtual BOOL Create(LPCTSTR lpszClassName, LPCTSTR lpszWindowName, DWORD dwStyle,
-						const RECT& rect, CWnd* pParentWnd, UINT nID, 
-						CCreateContext* pContext = NULL)
-	{ 
-		return CreateControl(GetClsid(), lpszWindowName, dwStyle, rect, pParentWnd, nID); 
-	}
+    CLSID const& GetClsid()
+    {
+        static CLSID const clsid
+            = { 0x8BD21D10, 0xEC42, 0x11CE, { 0x9E, 0xD, 0x0, 0xAA, 0x0, 0x60, 0x2, 0xF3 } };
+        return clsid;
+    }
+    virtual BOOL Create(LPCTSTR lpszClassName, LPCTSTR lpszWindowName, DWORD dwStyle,
+                        const RECT& rect, CWnd* pParentWnd, UINT nID, 
+                        CCreateContext* pContext = NULL)
+    { 
+        return CreateControl(GetClsid(), lpszWindowName, dwStyle, rect, pParentWnd, nID); 
+    }
 
     BOOL Create(LPCTSTR lpszWindowName, DWORD dwStyle, const RECT& rect, CWnd* pParentWnd, 
-				UINT nID, CFile* pPersist = NULL, BOOL bStorage = FALSE,
-				BSTR bstrLicKey = NULL)
-	{ 
-		return CreateControl(GetClsid(), lpszWindowName, dwStyle, rect, pParentWnd, nID,
-		pPersist, bStorage, bstrLicKey); 
-	}
+                UINT nID, CFile* pPersist = NULL, BOOL bStorage = FALSE,
+                BSTR bstrLicKey = NULL)
+    { 
+        return CreateControl(GetClsid(), lpszWindowName, dwStyle, rect, pParentWnd, nID,
+        pPersist, bStorage, bstrLicKey); 
+    }
 
 // Ьиад
 public:
@@ -363,576 +363,576 @@ public:
 // Functions
 //
 
-	void put_AutoSize(BOOL newValue)
-	{
-		static BYTE parms[] = VTS_BOOL ;
-		InvokeHelper(DISPID_AUTOSIZE, DISPATCH_PROPERTYPUT, VT_EMPTY, NULL, parms, newValue);
-	}
-	BOOL get_AutoSize()
-	{
-		BOOL result;
-		InvokeHelper(DISPID_AUTOSIZE, DISPATCH_PROPERTYGET, VT_BOOL, (void*)&result, NULL);
-		return result;
-	}
-	void put_AutoTab(BOOL newValue)
-	{
-		static BYTE parms[] = VTS_BOOL ;
-		InvokeHelper(0xd9, DISPATCH_PROPERTYPUT, VT_EMPTY, NULL, parms, newValue);
-	}
-	BOOL get_AutoTab()
-	{
-		BOOL result;
-		InvokeHelper(0xd9, DISPATCH_PROPERTYGET, VT_BOOL, (void*)&result, NULL);
-		return result;
-	}
-	void put_AutoWordSelect(BOOL newValue)
-	{
-		static BYTE parms[] = VTS_BOOL ;
-		InvokeHelper(0xda, DISPATCH_PROPERTYPUT, VT_EMPTY, NULL, parms, newValue);
-	}
-	BOOL get_AutoWordSelect()
-	{
-		BOOL result;
-		InvokeHelper(0xda, DISPATCH_PROPERTYGET, VT_BOOL, (void*)&result, NULL);
-		return result;
-	}
-	void put_BackColor(long newValue)
-	{
-		static BYTE parms[] = VTS_I4 ;
-		InvokeHelper(DISPID_BACKCOLOR, DISPATCH_PROPERTYPUT, VT_EMPTY, NULL, parms, newValue);
-	}
-	long get_BackColor()
-	{
-		long result;
-		InvokeHelper(DISPID_BACKCOLOR, DISPATCH_PROPERTYGET, VT_I4, (void*)&result, NULL);
-		return result;
-	}
-	void put_BackStyle(long newValue)
-	{
-		static BYTE parms[] = VTS_I4 ;
-		InvokeHelper(DISPID_BACKSTYLE, DISPATCH_PROPERTYPUT, VT_EMPTY, NULL, parms, newValue);
-	}
-	long get_BackStyle()
-	{
-		long result;
-		InvokeHelper(DISPID_BACKSTYLE, DISPATCH_PROPERTYGET, VT_I4, (void*)&result, NULL);
-		return result;
-	}
-	void put_BorderColor(long newValue)
-	{
-		static BYTE parms[] = VTS_I4 ;
-		InvokeHelper(DISPID_BORDERCOLOR, DISPATCH_PROPERTYPUT, VT_EMPTY, NULL, parms, newValue);
-	}
-	long get_BorderColor()
-	{
-		long result;
-		InvokeHelper(DISPID_BORDERCOLOR, DISPATCH_PROPERTYGET, VT_I4, (void*)&result, NULL);
-		return result;
-	}
-	void put_BorderStyle(long newValue)
-	{
-		static BYTE parms[] = VTS_I4 ;
-		InvokeHelper(DISPID_BORDERSTYLE, DISPATCH_PROPERTYPUT, VT_EMPTY, NULL, parms, newValue);
-	}
-	long get_BorderStyle()
-	{
-		long result;
-		InvokeHelper(DISPID_BORDERSTYLE, DISPATCH_PROPERTYGET, VT_I4, (void*)&result, NULL);
-		return result;
-	}
-	void put_BordersSuppress(BOOL newValue)
-	{
-		static BYTE parms[] = VTS_BOOL ;
-		InvokeHelper(0x14, DISPATCH_PROPERTYPUT, VT_EMPTY, NULL, parms, newValue);
-	}
-	BOOL get_BordersSuppress()
-	{
-		BOOL result;
-		InvokeHelper(0x14, DISPATCH_PROPERTYGET, VT_BOOL, (void*)&result, NULL);
-		return result;
-	}
-	BOOL get_CanPaste()
-	{
-		BOOL result;
-		InvokeHelper(0x19, DISPATCH_PROPERTYGET, VT_BOOL, (void*)&result, NULL);
-		return result;
-	}
-	void put_CurLine(long newValue)
-	{
-		static BYTE parms[] = VTS_I4 ;
-		InvokeHelper(0xd4, DISPATCH_PROPERTYPUT, VT_EMPTY, NULL, parms, newValue);
-	}
-	long get_CurLine()
-	{
-		long result;
-		InvokeHelper(0xd4, DISPATCH_PROPERTYGET, VT_I4, (void*)&result, NULL);
-		return result;
-	}
-	long get_CurTargetX()
-	{
-		long result;
-		InvokeHelper(0xd2, DISPATCH_PROPERTYGET, VT_I4, (void*)&result, NULL);
-		return result;
-	}
-	long get_CurTargetY()
-	{
-		long result;
-		InvokeHelper(0xdd, DISPATCH_PROPERTYGET, VT_I4, (void*)&result, NULL);
-		return result;
-	}
-	void put_CurX(long newValue)
-	{
-		static BYTE parms[] = VTS_I4 ;
-		InvokeHelper(0xd0, DISPATCH_PROPERTYPUT, VT_EMPTY, NULL, parms, newValue);
-	}
-	long get_CurX()
-	{
-		long result;
-		InvokeHelper(0xd0, DISPATCH_PROPERTYGET, VT_I4, (void*)&result, NULL);
-		return result;
-	}
-	void put_CurY(long newValue)
-	{
-		static BYTE parms[] = VTS_I4 ;
-		InvokeHelper(0xd1, DISPATCH_PROPERTYPUT, VT_EMPTY, NULL, parms, newValue);
-	}
-	long get_CurY()
-	{
-		long result;
-		InvokeHelper(0xd1, DISPATCH_PROPERTYGET, VT_I4, (void*)&result, NULL);
-		return result;
-	}
-	void put_DropButtonStyle(long newValue)
-	{
-		static BYTE parms[] = VTS_I4 ;
-		InvokeHelper(0x131, DISPATCH_PROPERTYPUT, VT_EMPTY, NULL, parms, newValue);
-	}
-	long get_DropButtonStyle()
-	{
-		long result;
-		InvokeHelper(0x131, DISPATCH_PROPERTYGET, VT_I4, (void*)&result, NULL);
-		return result;
-	}
-	void put_EnterKeyBehavior(BOOL newValue)
-	{
-		static BYTE parms[] = VTS_BOOL ;
-		InvokeHelper(0xfffffde0, DISPATCH_PROPERTYPUT, VT_EMPTY, NULL, parms, newValue);
-	}
-	BOOL get_EnterKeyBehavior()
-	{
-		BOOL result;
-		InvokeHelper(0xfffffde0, DISPATCH_PROPERTYGET, VT_BOOL, (void*)&result, NULL);
-		return result;
-	}
-	void put_Enabled(BOOL newValue)
-	{
-		static BYTE parms[] = VTS_BOOL ;
-		InvokeHelper(DISPID_ENABLED, DISPATCH_PROPERTYPUT, VT_EMPTY, NULL, parms, newValue);
-	}
-	BOOL get_Enabled()
-	{
-		BOOL result;
-		InvokeHelper(DISPID_ENABLED, DISPATCH_PROPERTYGET, VT_BOOL, (void*)&result, NULL);
-		return result;
-	}
-	void put__Font_Reserved(LPDISPATCH newValue)
-	{
-		static BYTE parms[] = VTS_DISPATCH ;
-		InvokeHelper(0x7ffffdff, DISPATCH_PROPERTYPUT, VT_EMPTY, NULL, parms, newValue);
-	}
-	void putref_Font(LPDISPATCH newValue)
-	{
-		static BYTE parms[] = VTS_DISPATCH ;
-		InvokeHelper(DISPID_FONT, DISPATCH_PROPERTYPUTREF, VT_EMPTY, NULL, parms, newValue);
-	}
-	LPDISPATCH get_Font()
-	{
-		LPDISPATCH result;
-		InvokeHelper(DISPID_FONT, DISPATCH_PROPERTYGET, VT_DISPATCH, (void*)&result, NULL);
-		return result;
-	}
-	void put_FontBold(BOOL newValue)
-	{
-		static BYTE parms[] = VTS_BOOL ;
-		InvokeHelper(0x3, DISPATCH_PROPERTYPUT, VT_EMPTY, NULL, parms, newValue);
-	}
-	BOOL get_FontBold()
-	{
-		BOOL result;
-		InvokeHelper(0x3, DISPATCH_PROPERTYGET, VT_BOOL, (void*)&result, NULL);
-		return result;
-	}
-	void put_FontItalic(BOOL newValue)
-	{
-		static BYTE parms[] = VTS_BOOL ;
-		InvokeHelper(0x4, DISPATCH_PROPERTYPUT, VT_EMPTY, NULL, parms, newValue);
-	}
-	BOOL get_FontItalic()
-	{
-		BOOL result;
-		InvokeHelper(0x4, DISPATCH_PROPERTYGET, VT_BOOL, (void*)&result, NULL);
-		return result;
-	}
-	void put_FontName(LPCTSTR newValue)
-	{
-		static BYTE parms[] = VTS_BSTR ;
-		InvokeHelper(0x1, DISPATCH_PROPERTYPUT, VT_EMPTY, NULL, parms, newValue);
-	}
-	CString get_FontName()
-	{
-		CString result;
-		InvokeHelper(0x1, DISPATCH_PROPERTYGET, VT_BSTR, (void*)&result, NULL);
-		return result;
-	}
-	void put_FontSize(CY newValue)
-	{
-		static BYTE parms[] = VTS_CY ;
-		InvokeHelper(0x2, DISPATCH_PROPERTYPUT, VT_EMPTY, NULL, parms, &newValue);
-	}
-	CY get_FontSize()
-	{
-		CY result;
-		InvokeHelper(0x2, DISPATCH_PROPERTYGET, VT_CY, (void*)&result, NULL);
-		return result;
-	}
-	void put_FontStrikethru(BOOL newValue)
-	{
-		static BYTE parms[] = VTS_BOOL ;
-		InvokeHelper(0x6, DISPATCH_PROPERTYPUT, VT_EMPTY, NULL, parms, newValue);
-	}
-	BOOL get_FontStrikethru()
-	{
-		BOOL result;
-		InvokeHelper(0x6, DISPATCH_PROPERTYGET, VT_BOOL, (void*)&result, NULL);
-		return result;
-	}
-	void put_FontUnderline(BOOL newValue)
-	{
-		static BYTE parms[] = VTS_BOOL ;
-		InvokeHelper(0x5, DISPATCH_PROPERTYPUT, VT_EMPTY, NULL, parms, newValue);
-	}
-	BOOL get_FontUnderline()
-	{
-		BOOL result;
-		InvokeHelper(0x5, DISPATCH_PROPERTYGET, VT_BOOL, (void*)&result, NULL);
-		return result;
-	}
-	void put_FontWeight(short newValue)
-	{
-		static BYTE parms[] = VTS_I2 ;
-		InvokeHelper(0x7, DISPATCH_PROPERTYPUT, VT_EMPTY, NULL, parms, newValue);
-	}
-	short get_FontWeight()
-	{
-		short result;
-		InvokeHelper(0x7, DISPATCH_PROPERTYGET, VT_I2, (void*)&result, NULL);
-		return result;
-	}
-	void put_ForeColor(long newValue)
-	{
-		static BYTE parms[] = VTS_I4 ;
-		InvokeHelper(DISPID_FORECOLOR, DISPATCH_PROPERTYPUT, VT_EMPTY, NULL, parms, newValue);
-	}
-	long get_ForeColor()
-	{
-		long result;
-		InvokeHelper(DISPID_FORECOLOR, DISPATCH_PROPERTYGET, VT_I4, (void*)&result, NULL);
-		return result;
-	}
-	void put_HideSelection(BOOL newValue)
-	{
-		static BYTE parms[] = VTS_BOOL ;
-		InvokeHelper(0xcf, DISPATCH_PROPERTYPUT, VT_EMPTY, NULL, parms, newValue);
-	}
-	BOOL get_HideSelection()
-	{
-		BOOL result;
-		InvokeHelper(0xcf, DISPATCH_PROPERTYGET, VT_BOOL, (void*)&result, NULL);
-		return result;
-	}
-	void put_IntegralHeight(BOOL newValue)
-	{
-		static BYTE parms[] = VTS_BOOL ;
-		InvokeHelper(0x25c, DISPATCH_PROPERTYPUT, VT_EMPTY, NULL, parms, newValue);
-	}
-	BOOL get_IntegralHeight()
-	{
-		BOOL result;
-		InvokeHelper(0x25c, DISPATCH_PROPERTYGET, VT_BOOL, (void*)&result, NULL);
-		return result;
-	}
-	long get_LineCount()
-	{
-		long result;
-		InvokeHelper(0xd6, DISPATCH_PROPERTYGET, VT_I4, (void*)&result, NULL);
-		return result;
-	}
-	void put_Locked(BOOL newValue)
-	{
-		static BYTE parms[] = VTS_BOOL ;
-		InvokeHelper(0xa, DISPATCH_PROPERTYPUT, VT_EMPTY, NULL, parms, newValue);
-	}
-	BOOL get_Locked()
-	{
-		BOOL result;
-		InvokeHelper(0xa, DISPATCH_PROPERTYGET, VT_BOOL, (void*)&result, NULL);
-		return result;
-	}
-	void put_MaxLength(long newValue)
-	{
-		static BYTE parms[] = VTS_I4 ;
-		InvokeHelper(0xfffffdeb, DISPATCH_PROPERTYPUT, VT_EMPTY, NULL, parms, newValue);
-	}
-	long get_MaxLength()
-	{
-		long result;
-		InvokeHelper(0xfffffdeb, DISPATCH_PROPERTYGET, VT_I4, (void*)&result, NULL);
-		return result;
-	}
-	void put_MouseIcon(LPDISPATCH newValue)
-	{
-		static BYTE parms[] = VTS_DISPATCH ;
-		InvokeHelper(0xfffffdf6, DISPATCH_PROPERTYPUT, VT_EMPTY, NULL, parms, newValue);
-	}
-	void putref_MouseIcon(LPDISPATCH newValue)
-	{
-		static BYTE parms[] = VTS_DISPATCH ;
-		InvokeHelper(0xfffffdf6, DISPATCH_PROPERTYPUTREF, VT_EMPTY, NULL, parms, newValue);
-	}
-	LPDISPATCH get_MouseIcon()
-	{
-		LPDISPATCH result;
-		InvokeHelper(0xfffffdf6, DISPATCH_PROPERTYGET, VT_DISPATCH, (void*)&result, NULL);
-		return result;
-	}
-	void put_MousePointer(long newValue)
-	{
-		static BYTE parms[] = VTS_I4 ;
-		InvokeHelper(0xfffffdf7, DISPATCH_PROPERTYPUT, VT_EMPTY, NULL, parms, newValue);
-	}
-	long get_MousePointer()
-	{
-		long result;
-		InvokeHelper(0xfffffdf7, DISPATCH_PROPERTYGET, VT_I4, (void*)&result, NULL);
-		return result;
-	}
-	void put_MultiLine(BOOL newValue)
-	{
-		static BYTE parms[] = VTS_BOOL ;
-		InvokeHelper(0xfffffde7, DISPATCH_PROPERTYPUT, VT_EMPTY, NULL, parms, newValue);
-	}
-	BOOL get_MultiLine()
-	{
-		BOOL result;
-		InvokeHelper(0xfffffde7, DISPATCH_PROPERTYGET, VT_BOOL, (void*)&result, NULL);
-		return result;
-	}
-	void put_PasswordChar(LPCTSTR newValue)
-	{
-		static BYTE parms[] = VTS_BSTR ;
-		InvokeHelper(0xfffffdea, DISPATCH_PROPERTYPUT, VT_EMPTY, NULL, parms, newValue);
-	}
-	CString get_PasswordChar()
-	{
-		CString result;
-		InvokeHelper(0xfffffdea, DISPATCH_PROPERTYGET, VT_BSTR, (void*)&result, NULL);
-		return result;
-	}
-	void put_ScrollBars(long newValue)
-	{
-		static BYTE parms[] = VTS_I4 ;
-		InvokeHelper(0xfffffde9, DISPATCH_PROPERTYPUT, VT_EMPTY, NULL, parms, newValue);
-	}
-	long get_ScrollBars()
-	{
-		long result;
-		InvokeHelper(0xfffffde9, DISPATCH_PROPERTYGET, VT_I4, (void*)&result, NULL);
-		return result;
-	}
-	void put_SelectionMargin(BOOL newValue)
-	{
-		static BYTE parms[] = VTS_BOOL ;
-		InvokeHelper(0xdc, DISPATCH_PROPERTYPUT, VT_EMPTY, NULL, parms, newValue);
-	}
-	BOOL get_SelectionMargin()
-	{
-		BOOL result;
-		InvokeHelper(0xdc, DISPATCH_PROPERTYGET, VT_BOOL, (void*)&result, NULL);
-		return result;
-	}
-	void put_SelLength(long newValue)
-	{
-		static BYTE parms[] = VTS_I4 ;
-		InvokeHelper(0xfffffddc, DISPATCH_PROPERTYPUT, VT_EMPTY, NULL, parms, newValue);
-	}
-	long get_SelLength()
-	{
-		long result;
-		InvokeHelper(0xfffffddc, DISPATCH_PROPERTYGET, VT_I4, (void*)&result, NULL);
-		return result;
-	}
-	void put_SelStart(long newValue)
-	{
-		static BYTE parms[] = VTS_I4 ;
-		InvokeHelper(0xfffffddd, DISPATCH_PROPERTYPUT, VT_EMPTY, NULL, parms, newValue);
-	}
-	long get_SelStart()
-	{
-		long result;
-		InvokeHelper(0xfffffddd, DISPATCH_PROPERTYGET, VT_I4, (void*)&result, NULL);
-		return result;
-	}
-	void put_SelText(LPCTSTR newValue)
-	{
-		static BYTE parms[] = VTS_BSTR ;
-		InvokeHelper(0xfffffdde, DISPATCH_PROPERTYPUT, VT_EMPTY, NULL, parms, newValue);
-	}
-	CString get_SelText()
-	{
-		CString result;
-		InvokeHelper(0xfffffdde, DISPATCH_PROPERTYGET, VT_BSTR, (void*)&result, NULL);
-		return result;
-	}
-	void put_ShowDropButtonWhen(long newValue)
-	{
-		static BYTE parms[] = VTS_I4 ;
-		InvokeHelper(0x130, DISPATCH_PROPERTYPUT, VT_EMPTY, NULL, parms, newValue);
-	}
-	long get_ShowDropButtonWhen()
-	{
-		long result;
-		InvokeHelper(0x130, DISPATCH_PROPERTYGET, VT_I4, (void*)&result, NULL);
-		return result;
-	}
-	void put_SpecialEffect(long newValue)
-	{
-		static BYTE parms[] = VTS_I4 ;
-		InvokeHelper(0xc, DISPATCH_PROPERTYPUT, VT_EMPTY, NULL, parms, newValue);
-	}
-	long get_SpecialEffect()
-	{
-		long result;
-		InvokeHelper(0xc, DISPATCH_PROPERTYGET, VT_I4, (void*)&result, NULL);
-		return result;
-	}
-	void put_TabKeyBehavior(BOOL newValue)
-	{
-		static BYTE parms[] = VTS_BOOL ;
-		InvokeHelper(0xfffffddf, DISPATCH_PROPERTYPUT, VT_EMPTY, NULL, parms, newValue);
-	}
-	BOOL get_TabKeyBehavior()
-	{
-		BOOL result;
-		InvokeHelper(0xfffffddf, DISPATCH_PROPERTYGET, VT_BOOL, (void*)&result, NULL);
-		return result;
-	}
-	void put_Text(LPCTSTR newValue)
-	{
-		static BYTE parms[] = VTS_BSTR ;
-		InvokeHelper(DISPID_TEXT, DISPATCH_PROPERTYPUT, VT_EMPTY, NULL, parms, newValue);
-	}
-	CString get_Text()
-	{
-		CString result;
-		InvokeHelper(DISPID_TEXT, DISPATCH_PROPERTYGET, VT_BSTR, (void*)&result, NULL);
-		return result;
-	}
-	void put_TextAlign(long newValue)
-	{
-		static BYTE parms[] = VTS_I4 ;
-		InvokeHelper(0x2714, DISPATCH_PROPERTYPUT, VT_EMPTY, NULL, parms, newValue);
-	}
-	long get_TextAlign()
-	{
-		long result;
-		InvokeHelper(0x2714, DISPATCH_PROPERTYGET, VT_I4, (void*)&result, NULL);
-		return result;
-	}
-	long get_TextLength()
-	{
-		long result;
-		InvokeHelper(0xd8, DISPATCH_PROPERTYGET, VT_I4, (void*)&result, NULL);
-		return result;
-	}
-	BOOL get_Valid()
-	{
-		BOOL result;
-		InvokeHelper(0xfffffdf4, DISPATCH_PROPERTYGET, VT_BOOL, (void*)&result, NULL);
-		return result;
-	}
-	void put_Value(VARIANT * newValue)
-	{
-		static BYTE parms[] = VTS_PVARIANT ;
-		InvokeHelper(0x0, DISPATCH_PROPERTYPUT, VT_EMPTY, NULL, parms, newValue);
-	}
-	VARIANT get_Value()
-	{
-		VARIANT result;
-		InvokeHelper(0x0, DISPATCH_PROPERTYGET, VT_VARIANT, (void*)&result, NULL);
-		return result;
-	}
-	void put_WordWrap(BOOL newValue)
-	{
-		static BYTE parms[] = VTS_BOOL ;
-		InvokeHelper(0xfffffde8, DISPATCH_PROPERTYPUT, VT_EMPTY, NULL, parms, newValue);
-	}
-	BOOL get_WordWrap()
-	{
-		BOOL result;
-		InvokeHelper(0xfffffde8, DISPATCH_PROPERTYGET, VT_BOOL, (void*)&result, NULL);
-		return result;
-	}
-	void Copy()
-	{
-		InvokeHelper(0x16, DISPATCH_METHOD, VT_EMPTY, NULL, NULL);
-	}
-	void Cut()
-	{
-		InvokeHelper(0x15, DISPATCH_METHOD, VT_EMPTY, NULL, NULL);
-	}
-	void Paste()
-	{
-		InvokeHelper(0x18, DISPATCH_METHOD, VT_EMPTY, NULL, NULL);
-	}
-	void put_IMEMode(long newValue)
-	{
-		static BYTE parms[] = VTS_I4 ;
-		InvokeHelper(0xfffffde2, DISPATCH_PROPERTYPUT, VT_EMPTY, NULL, parms, newValue);
-	}
-	long get_IMEMode()
-	{
-		long result;
-		InvokeHelper(0xfffffde2, DISPATCH_PROPERTYGET, VT_I4, (void*)&result, NULL);
-		return result;
-	}
-	void put_EnterFieldBehavior(long newValue)
-	{
-		static BYTE parms[] = VTS_I4 ;
-		InvokeHelper(0xe0, DISPATCH_PROPERTYPUT, VT_EMPTY, NULL, parms, newValue);
-	}
-	long get_EnterFieldBehavior()
-	{
-		long result;
-		InvokeHelper(0xe0, DISPATCH_PROPERTYGET, VT_I4, (void*)&result, NULL);
-		return result;
-	}
-	void put_DragBehavior(long newValue)
-	{
-		static BYTE parms[] = VTS_I4 ;
-		InvokeHelper(0xe1, DISPATCH_PROPERTYPUT, VT_EMPTY, NULL, parms, newValue);
-	}
-	long get_DragBehavior()
-	{
-		long result;
-		InvokeHelper(0xe1, DISPATCH_PROPERTYGET, VT_I4, (void*)&result, NULL);
-		return result;
-	}
-	long get_DisplayStyle()
-	{
-		long result;
-		InvokeHelper(0xfffffde4, DISPATCH_PROPERTYGET, VT_I4, (void*)&result, NULL);
-		return result;
-	}
+    void put_AutoSize(BOOL newValue)
+    {
+        static BYTE parms[] = VTS_BOOL ;
+        InvokeHelper(DISPID_AUTOSIZE, DISPATCH_PROPERTYPUT, VT_EMPTY, NULL, parms, newValue);
+    }
+    BOOL get_AutoSize()
+    {
+        BOOL result;
+        InvokeHelper(DISPID_AUTOSIZE, DISPATCH_PROPERTYGET, VT_BOOL, (void*)&result, NULL);
+        return result;
+    }
+    void put_AutoTab(BOOL newValue)
+    {
+        static BYTE parms[] = VTS_BOOL ;
+        InvokeHelper(0xd9, DISPATCH_PROPERTYPUT, VT_EMPTY, NULL, parms, newValue);
+    }
+    BOOL get_AutoTab()
+    {
+        BOOL result;
+        InvokeHelper(0xd9, DISPATCH_PROPERTYGET, VT_BOOL, (void*)&result, NULL);
+        return result;
+    }
+    void put_AutoWordSelect(BOOL newValue)
+    {
+        static BYTE parms[] = VTS_BOOL ;
+        InvokeHelper(0xda, DISPATCH_PROPERTYPUT, VT_EMPTY, NULL, parms, newValue);
+    }
+    BOOL get_AutoWordSelect()
+    {
+        BOOL result;
+        InvokeHelper(0xda, DISPATCH_PROPERTYGET, VT_BOOL, (void*)&result, NULL);
+        return result;
+    }
+    void put_BackColor(long newValue)
+    {
+        static BYTE parms[] = VTS_I4 ;
+        InvokeHelper(DISPID_BACKCOLOR, DISPATCH_PROPERTYPUT, VT_EMPTY, NULL, parms, newValue);
+    }
+    long get_BackColor()
+    {
+        long result;
+        InvokeHelper(DISPID_BACKCOLOR, DISPATCH_PROPERTYGET, VT_I4, (void*)&result, NULL);
+        return result;
+    }
+    void put_BackStyle(long newValue)
+    {
+        static BYTE parms[] = VTS_I4 ;
+        InvokeHelper(DISPID_BACKSTYLE, DISPATCH_PROPERTYPUT, VT_EMPTY, NULL, parms, newValue);
+    }
+    long get_BackStyle()
+    {
+        long result;
+        InvokeHelper(DISPID_BACKSTYLE, DISPATCH_PROPERTYGET, VT_I4, (void*)&result, NULL);
+        return result;
+    }
+    void put_BorderColor(long newValue)
+    {
+        static BYTE parms[] = VTS_I4 ;
+        InvokeHelper(DISPID_BORDERCOLOR, DISPATCH_PROPERTYPUT, VT_EMPTY, NULL, parms, newValue);
+    }
+    long get_BorderColor()
+    {
+        long result;
+        InvokeHelper(DISPID_BORDERCOLOR, DISPATCH_PROPERTYGET, VT_I4, (void*)&result, NULL);
+        return result;
+    }
+    void put_BorderStyle(long newValue)
+    {
+        static BYTE parms[] = VTS_I4 ;
+        InvokeHelper(DISPID_BORDERSTYLE, DISPATCH_PROPERTYPUT, VT_EMPTY, NULL, parms, newValue);
+    }
+    long get_BorderStyle()
+    {
+        long result;
+        InvokeHelper(DISPID_BORDERSTYLE, DISPATCH_PROPERTYGET, VT_I4, (void*)&result, NULL);
+        return result;
+    }
+    void put_BordersSuppress(BOOL newValue)
+    {
+        static BYTE parms[] = VTS_BOOL ;
+        InvokeHelper(0x14, DISPATCH_PROPERTYPUT, VT_EMPTY, NULL, parms, newValue);
+    }
+    BOOL get_BordersSuppress()
+    {
+        BOOL result;
+        InvokeHelper(0x14, DISPATCH_PROPERTYGET, VT_BOOL, (void*)&result, NULL);
+        return result;
+    }
+    BOOL get_CanPaste()
+    {
+        BOOL result;
+        InvokeHelper(0x19, DISPATCH_PROPERTYGET, VT_BOOL, (void*)&result, NULL);
+        return result;
+    }
+    void put_CurLine(long newValue)
+    {
+        static BYTE parms[] = VTS_I4 ;
+        InvokeHelper(0xd4, DISPATCH_PROPERTYPUT, VT_EMPTY, NULL, parms, newValue);
+    }
+    long get_CurLine()
+    {
+        long result;
+        InvokeHelper(0xd4, DISPATCH_PROPERTYGET, VT_I4, (void*)&result, NULL);
+        return result;
+    }
+    long get_CurTargetX()
+    {
+        long result;
+        InvokeHelper(0xd2, DISPATCH_PROPERTYGET, VT_I4, (void*)&result, NULL);
+        return result;
+    }
+    long get_CurTargetY()
+    {
+        long result;
+        InvokeHelper(0xdd, DISPATCH_PROPERTYGET, VT_I4, (void*)&result, NULL);
+        return result;
+    }
+    void put_CurX(long newValue)
+    {
+        static BYTE parms[] = VTS_I4 ;
+        InvokeHelper(0xd0, DISPATCH_PROPERTYPUT, VT_EMPTY, NULL, parms, newValue);
+    }
+    long get_CurX()
+    {
+        long result;
+        InvokeHelper(0xd0, DISPATCH_PROPERTYGET, VT_I4, (void*)&result, NULL);
+        return result;
+    }
+    void put_CurY(long newValue)
+    {
+        static BYTE parms[] = VTS_I4 ;
+        InvokeHelper(0xd1, DISPATCH_PROPERTYPUT, VT_EMPTY, NULL, parms, newValue);
+    }
+    long get_CurY()
+    {
+        long result;
+        InvokeHelper(0xd1, DISPATCH_PROPERTYGET, VT_I4, (void*)&result, NULL);
+        return result;
+    }
+    void put_DropButtonStyle(long newValue)
+    {
+        static BYTE parms[] = VTS_I4 ;
+        InvokeHelper(0x131, DISPATCH_PROPERTYPUT, VT_EMPTY, NULL, parms, newValue);
+    }
+    long get_DropButtonStyle()
+    {
+        long result;
+        InvokeHelper(0x131, DISPATCH_PROPERTYGET, VT_I4, (void*)&result, NULL);
+        return result;
+    }
+    void put_EnterKeyBehavior(BOOL newValue)
+    {
+        static BYTE parms[] = VTS_BOOL ;
+        InvokeHelper(0xfffffde0, DISPATCH_PROPERTYPUT, VT_EMPTY, NULL, parms, newValue);
+    }
+    BOOL get_EnterKeyBehavior()
+    {
+        BOOL result;
+        InvokeHelper(0xfffffde0, DISPATCH_PROPERTYGET, VT_BOOL, (void*)&result, NULL);
+        return result;
+    }
+    void put_Enabled(BOOL newValue)
+    {
+        static BYTE parms[] = VTS_BOOL ;
+        InvokeHelper(DISPID_ENABLED, DISPATCH_PROPERTYPUT, VT_EMPTY, NULL, parms, newValue);
+    }
+    BOOL get_Enabled()
+    {
+        BOOL result;
+        InvokeHelper(DISPID_ENABLED, DISPATCH_PROPERTYGET, VT_BOOL, (void*)&result, NULL);
+        return result;
+    }
+    void put__Font_Reserved(LPDISPATCH newValue)
+    {
+        static BYTE parms[] = VTS_DISPATCH ;
+        InvokeHelper(0x7ffffdff, DISPATCH_PROPERTYPUT, VT_EMPTY, NULL, parms, newValue);
+    }
+    void putref_Font(LPDISPATCH newValue)
+    {
+        static BYTE parms[] = VTS_DISPATCH ;
+        InvokeHelper(DISPID_FONT, DISPATCH_PROPERTYPUTREF, VT_EMPTY, NULL, parms, newValue);
+    }
+    LPDISPATCH get_Font()
+    {
+        LPDISPATCH result;
+        InvokeHelper(DISPID_FONT, DISPATCH_PROPERTYGET, VT_DISPATCH, (void*)&result, NULL);
+        return result;
+    }
+    void put_FontBold(BOOL newValue)
+    {
+        static BYTE parms[] = VTS_BOOL ;
+        InvokeHelper(0x3, DISPATCH_PROPERTYPUT, VT_EMPTY, NULL, parms, newValue);
+    }
+    BOOL get_FontBold()
+    {
+        BOOL result;
+        InvokeHelper(0x3, DISPATCH_PROPERTYGET, VT_BOOL, (void*)&result, NULL);
+        return result;
+    }
+    void put_FontItalic(BOOL newValue)
+    {
+        static BYTE parms[] = VTS_BOOL ;
+        InvokeHelper(0x4, DISPATCH_PROPERTYPUT, VT_EMPTY, NULL, parms, newValue);
+    }
+    BOOL get_FontItalic()
+    {
+        BOOL result;
+        InvokeHelper(0x4, DISPATCH_PROPERTYGET, VT_BOOL, (void*)&result, NULL);
+        return result;
+    }
+    void put_FontName(LPCTSTR newValue)
+    {
+        static BYTE parms[] = VTS_BSTR ;
+        InvokeHelper(0x1, DISPATCH_PROPERTYPUT, VT_EMPTY, NULL, parms, newValue);
+    }
+    CString get_FontName()
+    {
+        CString result;
+        InvokeHelper(0x1, DISPATCH_PROPERTYGET, VT_BSTR, (void*)&result, NULL);
+        return result;
+    }
+    void put_FontSize(CY newValue)
+    {
+        static BYTE parms[] = VTS_CY ;
+        InvokeHelper(0x2, DISPATCH_PROPERTYPUT, VT_EMPTY, NULL, parms, &newValue);
+    }
+    CY get_FontSize()
+    {
+        CY result;
+        InvokeHelper(0x2, DISPATCH_PROPERTYGET, VT_CY, (void*)&result, NULL);
+        return result;
+    }
+    void put_FontStrikethru(BOOL newValue)
+    {
+        static BYTE parms[] = VTS_BOOL ;
+        InvokeHelper(0x6, DISPATCH_PROPERTYPUT, VT_EMPTY, NULL, parms, newValue);
+    }
+    BOOL get_FontStrikethru()
+    {
+        BOOL result;
+        InvokeHelper(0x6, DISPATCH_PROPERTYGET, VT_BOOL, (void*)&result, NULL);
+        return result;
+    }
+    void put_FontUnderline(BOOL newValue)
+    {
+        static BYTE parms[] = VTS_BOOL ;
+        InvokeHelper(0x5, DISPATCH_PROPERTYPUT, VT_EMPTY, NULL, parms, newValue);
+    }
+    BOOL get_FontUnderline()
+    {
+        BOOL result;
+        InvokeHelper(0x5, DISPATCH_PROPERTYGET, VT_BOOL, (void*)&result, NULL);
+        return result;
+    }
+    void put_FontWeight(short newValue)
+    {
+        static BYTE parms[] = VTS_I2 ;
+        InvokeHelper(0x7, DISPATCH_PROPERTYPUT, VT_EMPTY, NULL, parms, newValue);
+    }
+    short get_FontWeight()
+    {
+        short result;
+        InvokeHelper(0x7, DISPATCH_PROPERTYGET, VT_I2, (void*)&result, NULL);
+        return result;
+    }
+    void put_ForeColor(long newValue)
+    {
+        static BYTE parms[] = VTS_I4 ;
+        InvokeHelper(DISPID_FORECOLOR, DISPATCH_PROPERTYPUT, VT_EMPTY, NULL, parms, newValue);
+    }
+    long get_ForeColor()
+    {
+        long result;
+        InvokeHelper(DISPID_FORECOLOR, DISPATCH_PROPERTYGET, VT_I4, (void*)&result, NULL);
+        return result;
+    }
+    void put_HideSelection(BOOL newValue)
+    {
+        static BYTE parms[] = VTS_BOOL ;
+        InvokeHelper(0xcf, DISPATCH_PROPERTYPUT, VT_EMPTY, NULL, parms, newValue);
+    }
+    BOOL get_HideSelection()
+    {
+        BOOL result;
+        InvokeHelper(0xcf, DISPATCH_PROPERTYGET, VT_BOOL, (void*)&result, NULL);
+        return result;
+    }
+    void put_IntegralHeight(BOOL newValue)
+    {
+        static BYTE parms[] = VTS_BOOL ;
+        InvokeHelper(0x25c, DISPATCH_PROPERTYPUT, VT_EMPTY, NULL, parms, newValue);
+    }
+    BOOL get_IntegralHeight()
+    {
+        BOOL result;
+        InvokeHelper(0x25c, DISPATCH_PROPERTYGET, VT_BOOL, (void*)&result, NULL);
+        return result;
+    }
+    long get_LineCount()
+    {
+        long result;
+        InvokeHelper(0xd6, DISPATCH_PROPERTYGET, VT_I4, (void*)&result, NULL);
+        return result;
+    }
+    void put_Locked(BOOL newValue)
+    {
+        static BYTE parms[] = VTS_BOOL ;
+        InvokeHelper(0xa, DISPATCH_PROPERTYPUT, VT_EMPTY, NULL, parms, newValue);
+    }
+    BOOL get_Locked()
+    {
+        BOOL result;
+        InvokeHelper(0xa, DISPATCH_PROPERTYGET, VT_BOOL, (void*)&result, NULL);
+        return result;
+    }
+    void put_MaxLength(long newValue)
+    {
+        static BYTE parms[] = VTS_I4 ;
+        InvokeHelper(0xfffffdeb, DISPATCH_PROPERTYPUT, VT_EMPTY, NULL, parms, newValue);
+    }
+    long get_MaxLength()
+    {
+        long result;
+        InvokeHelper(0xfffffdeb, DISPATCH_PROPERTYGET, VT_I4, (void*)&result, NULL);
+        return result;
+    }
+    void put_MouseIcon(LPDISPATCH newValue)
+    {
+        static BYTE parms[] = VTS_DISPATCH ;
+        InvokeHelper(0xfffffdf6, DISPATCH_PROPERTYPUT, VT_EMPTY, NULL, parms, newValue);
+    }
+    void putref_MouseIcon(LPDISPATCH newValue)
+    {
+        static BYTE parms[] = VTS_DISPATCH ;
+        InvokeHelper(0xfffffdf6, DISPATCH_PROPERTYPUTREF, VT_EMPTY, NULL, parms, newValue);
+    }
+    LPDISPATCH get_MouseIcon()
+    {
+        LPDISPATCH result;
+        InvokeHelper(0xfffffdf6, DISPATCH_PROPERTYGET, VT_DISPATCH, (void*)&result, NULL);
+        return result;
+    }
+    void put_MousePointer(long newValue)
+    {
+        static BYTE parms[] = VTS_I4 ;
+        InvokeHelper(0xfffffdf7, DISPATCH_PROPERTYPUT, VT_EMPTY, NULL, parms, newValue);
+    }
+    long get_MousePointer()
+    {
+        long result;
+        InvokeHelper(0xfffffdf7, DISPATCH_PROPERTYGET, VT_I4, (void*)&result, NULL);
+        return result;
+    }
+    void put_MultiLine(BOOL newValue)
+    {
+        static BYTE parms[] = VTS_BOOL ;
+        InvokeHelper(0xfffffde7, DISPATCH_PROPERTYPUT, VT_EMPTY, NULL, parms, newValue);
+    }
+    BOOL get_MultiLine()
+    {
+        BOOL result;
+        InvokeHelper(0xfffffde7, DISPATCH_PROPERTYGET, VT_BOOL, (void*)&result, NULL);
+        return result;
+    }
+    void put_PasswordChar(LPCTSTR newValue)
+    {
+        static BYTE parms[] = VTS_BSTR ;
+        InvokeHelper(0xfffffdea, DISPATCH_PROPERTYPUT, VT_EMPTY, NULL, parms, newValue);
+    }
+    CString get_PasswordChar()
+    {
+        CString result;
+        InvokeHelper(0xfffffdea, DISPATCH_PROPERTYGET, VT_BSTR, (void*)&result, NULL);
+        return result;
+    }
+    void put_ScrollBars(long newValue)
+    {
+        static BYTE parms[] = VTS_I4 ;
+        InvokeHelper(0xfffffde9, DISPATCH_PROPERTYPUT, VT_EMPTY, NULL, parms, newValue);
+    }
+    long get_ScrollBars()
+    {
+        long result;
+        InvokeHelper(0xfffffde9, DISPATCH_PROPERTYGET, VT_I4, (void*)&result, NULL);
+        return result;
+    }
+    void put_SelectionMargin(BOOL newValue)
+    {
+        static BYTE parms[] = VTS_BOOL ;
+        InvokeHelper(0xdc, DISPATCH_PROPERTYPUT, VT_EMPTY, NULL, parms, newValue);
+    }
+    BOOL get_SelectionMargin()
+    {
+        BOOL result;
+        InvokeHelper(0xdc, DISPATCH_PROPERTYGET, VT_BOOL, (void*)&result, NULL);
+        return result;
+    }
+    void put_SelLength(long newValue)
+    {
+        static BYTE parms[] = VTS_I4 ;
+        InvokeHelper(0xfffffddc, DISPATCH_PROPERTYPUT, VT_EMPTY, NULL, parms, newValue);
+    }
+    long get_SelLength()
+    {
+        long result;
+        InvokeHelper(0xfffffddc, DISPATCH_PROPERTYGET, VT_I4, (void*)&result, NULL);
+        return result;
+    }
+    void put_SelStart(long newValue)
+    {
+        static BYTE parms[] = VTS_I4 ;
+        InvokeHelper(0xfffffddd, DISPATCH_PROPERTYPUT, VT_EMPTY, NULL, parms, newValue);
+    }
+    long get_SelStart()
+    {
+        long result;
+        InvokeHelper(0xfffffddd, DISPATCH_PROPERTYGET, VT_I4, (void*)&result, NULL);
+        return result;
+    }
+    void put_SelText(LPCTSTR newValue)
+    {
+        static BYTE parms[] = VTS_BSTR ;
+        InvokeHelper(0xfffffdde, DISPATCH_PROPERTYPUT, VT_EMPTY, NULL, parms, newValue);
+    }
+    CString get_SelText()
+    {
+        CString result;
+        InvokeHelper(0xfffffdde, DISPATCH_PROPERTYGET, VT_BSTR, (void*)&result, NULL);
+        return result;
+    }
+    void put_ShowDropButtonWhen(long newValue)
+    {
+        static BYTE parms[] = VTS_I4 ;
+        InvokeHelper(0x130, DISPATCH_PROPERTYPUT, VT_EMPTY, NULL, parms, newValue);
+    }
+    long get_ShowDropButtonWhen()
+    {
+        long result;
+        InvokeHelper(0x130, DISPATCH_PROPERTYGET, VT_I4, (void*)&result, NULL);
+        return result;
+    }
+    void put_SpecialEffect(long newValue)
+    {
+        static BYTE parms[] = VTS_I4 ;
+        InvokeHelper(0xc, DISPATCH_PROPERTYPUT, VT_EMPTY, NULL, parms, newValue);
+    }
+    long get_SpecialEffect()
+    {
+        long result;
+        InvokeHelper(0xc, DISPATCH_PROPERTYGET, VT_I4, (void*)&result, NULL);
+        return result;
+    }
+    void put_TabKeyBehavior(BOOL newValue)
+    {
+        static BYTE parms[] = VTS_BOOL ;
+        InvokeHelper(0xfffffddf, DISPATCH_PROPERTYPUT, VT_EMPTY, NULL, parms, newValue);
+    }
+    BOOL get_TabKeyBehavior()
+    {
+        BOOL result;
+        InvokeHelper(0xfffffddf, DISPATCH_PROPERTYGET, VT_BOOL, (void*)&result, NULL);
+        return result;
+    }
+    void put_Text(LPCTSTR newValue)
+    {
+        static BYTE parms[] = VTS_BSTR ;
+        InvokeHelper(DISPID_TEXT, DISPATCH_PROPERTYPUT, VT_EMPTY, NULL, parms, newValue);
+    }
+    CString get_Text()
+    {
+        CString result;
+        InvokeHelper(DISPID_TEXT, DISPATCH_PROPERTYGET, VT_BSTR, (void*)&result, NULL);
+        return result;
+    }
+    void put_TextAlign(long newValue)
+    {
+        static BYTE parms[] = VTS_I4 ;
+        InvokeHelper(0x2714, DISPATCH_PROPERTYPUT, VT_EMPTY, NULL, parms, newValue);
+    }
+    long get_TextAlign()
+    {
+        long result;
+        InvokeHelper(0x2714, DISPATCH_PROPERTYGET, VT_I4, (void*)&result, NULL);
+        return result;
+    }
+    long get_TextLength()
+    {
+        long result;
+        InvokeHelper(0xd8, DISPATCH_PROPERTYGET, VT_I4, (void*)&result, NULL);
+        return result;
+    }
+    BOOL get_Valid()
+    {
+        BOOL result;
+        InvokeHelper(0xfffffdf4, DISPATCH_PROPERTYGET, VT_BOOL, (void*)&result, NULL);
+        return result;
+    }
+    void put_Value(VARIANT * newValue)
+    {
+        static BYTE parms[] = VTS_PVARIANT ;
+        InvokeHelper(0x0, DISPATCH_PROPERTYPUT, VT_EMPTY, NULL, parms, newValue);
+    }
+    VARIANT get_Value()
+    {
+        VARIANT result;
+        InvokeHelper(0x0, DISPATCH_PROPERTYGET, VT_VARIANT, (void*)&result, NULL);
+        return result;
+    }
+    void put_WordWrap(BOOL newValue)
+    {
+        static BYTE parms[] = VTS_BOOL ;
+        InvokeHelper(0xfffffde8, DISPATCH_PROPERTYPUT, VT_EMPTY, NULL, parms, newValue);
+    }
+    BOOL get_WordWrap()
+    {
+        BOOL result;
+        InvokeHelper(0xfffffde8, DISPATCH_PROPERTYGET, VT_BOOL, (void*)&result, NULL);
+        return result;
+    }
+    void Copy()
+    {
+        InvokeHelper(0x16, DISPATCH_METHOD, VT_EMPTY, NULL, NULL);
+    }
+    void Cut()
+    {
+        InvokeHelper(0x15, DISPATCH_METHOD, VT_EMPTY, NULL, NULL);
+    }
+    void Paste()
+    {
+        InvokeHelper(0x18, DISPATCH_METHOD, VT_EMPTY, NULL, NULL);
+    }
+    void put_IMEMode(long newValue)
+    {
+        static BYTE parms[] = VTS_I4 ;
+        InvokeHelper(0xfffffde2, DISPATCH_PROPERTYPUT, VT_EMPTY, NULL, parms, newValue);
+    }
+    long get_IMEMode()
+    {
+        long result;
+        InvokeHelper(0xfffffde2, DISPATCH_PROPERTYGET, VT_I4, (void*)&result, NULL);
+        return result;
+    }
+    void put_EnterFieldBehavior(long newValue)
+    {
+        static BYTE parms[] = VTS_I4 ;
+        InvokeHelper(0xe0, DISPATCH_PROPERTYPUT, VT_EMPTY, NULL, parms, newValue);
+    }
+    long get_EnterFieldBehavior()
+    {
+        long result;
+        InvokeHelper(0xe0, DISPATCH_PROPERTYGET, VT_I4, (void*)&result, NULL);
+        return result;
+    }
+    void put_DragBehavior(long newValue)
+    {
+        static BYTE parms[] = VTS_I4 ;
+        InvokeHelper(0xe1, DISPATCH_PROPERTYPUT, VT_EMPTY, NULL, parms, newValue);
+    }
+    long get_DragBehavior()
+    {
+        long result;
+        InvokeHelper(0xe1, DISPATCH_PROPERTYGET, VT_I4, (void*)&result, NULL);
+        return result;
+    }
+    long get_DisplayStyle()
+    {
+        long result;
+        InvokeHelper(0xfffffde4, DISPATCH_PROPERTYGET, VT_I4, (void*)&result, NULL);
+        return result;
+    }
 
 // Properties
 //

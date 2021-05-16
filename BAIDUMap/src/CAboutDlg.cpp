@@ -12,7 +12,7 @@ CAboutDlg::CAboutDlg() : CDialogEx(CAboutDlg::IDD)
 
 void CAboutDlg::DoDataExchange(CDataExchange* pDX)
 {
-	CDialogEx::DoDataExchange(pDX);
+    CDialogEx::DoDataExchange(pDX);
 }
 
 

@@ -6,47 +6,39 @@
 #include "JavaScriptAgent.h"
 
 
-class CBAIDUMapDlg : public CDialogEx, public IDispatch
+class CBAIDUMapDlg : public CDialogEx
 {
 public:
-	enum { IDD = IDD_BAIDUMAP_DIALOG };
+    enum { IDD = IDD_BAIDUMAP_DIALOG };
 
-	CBAIDUMapDlg(CWnd* pParent = NULL);
-	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);
+    CBAIDUMapDlg(CWnd* pParent = NULL);
 protected:
-	HICON m_hIcon;
+    virtual void DoDataExchange(CDataExchange* pDX);
+protected:
+    HICON m_hIcon;
 
-	virtual BOOL OnInitDialog();
-	afx_msg void OnSysCommand(UINT nID, LPARAM lParam);
-	afx_msg void OnPaint();
-	afx_msg HCURSOR OnQueryDragIcon();
-	DECLARE_MESSAGE_MAP()
+    virtual BOOL OnInitDialog();
+    afx_msg void OnSysCommand(UINT nID, LPARAM lParam);
+    afx_msg void OnPaint();
+    afx_msg HCURSOR OnQueryDragIcon();
+    DECLARE_MESSAGE_MAP()
 public:
-	JavaScriptAgent jsAgent;
+    JavaScriptAgent jsAgent;
 
-	CEdit lngBox;
-	CEdit latBox;
-	CEdit pointBox;
-	CEdit pointsEdit;
+    CEdit lngBox;
+    CEdit latBox;
+    CEdit pointBox;
+    CEdit pointsEdit;
 
-	afx_msg void OnBnClickedButton1();
-	afx_msg void OnBnClickedButton2();
-	afx_msg void OnBnClickedButton3();
-	afx_msg void OnBnClickedButton4();
-	afx_msg void OnBnClickedButton5();
-	afx_msg void OnBnClickedButton6();
-
-	virtual HRESULT STDMETHODCALLTYPE GetTypeInfoCount(UINT *pctinfo);
-	virtual HRESULT STDMETHODCALLTYPE GetTypeInfo(UINT iTInfo, LCID lcid, ITypeInfo **ppTInfo);
-	virtual HRESULT STDMETHODCALLTYPE GetIDsOfNames(REFIID riid, LPOLESTR *rgszNames, UINT cNames, LCID lcid, DISPID *rgDispId);
-	virtual HRESULT STDMETHODCALLTYPE Invoke(DISPID dispIdMember, REFIID riid, LCID lcid, WORD wFlags, DISPPARAMS *pDispParams, VARIANT *pVarResult, EXCEPINFO *pExcepInfo, UINT *puArgErr);
-	virtual HRESULT STDMETHODCALLTYPE QueryInterface(REFIID riid, void **ppvObject);
-	virtual ULONG STDMETHODCALLTYPE AddRef();
-	virtual ULONG STDMETHODCALLTYPE Release();
-	DECLARE_EVENTSINK_MAP()
-	void DocumentCompleteExplorer1(LPDISPATCH pDisp, VARIANT* URL);
+    afx_msg void OnBnClickedButton1();
+    afx_msg void OnBnClickedButton2();
+    afx_msg void OnBnClickedButton3();
+    afx_msg void OnBnClickedButton5();
+    afx_msg void OnBnClickedButton6();
 	void ShowPointString(const wchar_t *msg);
+
+    DECLARE_EVENTSINK_MAP()
+    void DocumentCompleteExplorer1(LPDISPATCH pDisp, VARIANT* URL);
 };
 
 enum
