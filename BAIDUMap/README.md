@@ -46,32 +46,22 @@
    2. 使用示例代码
 
       ```c++
-      // ...
       CWebPage web;
       web.SetDocument(browser.get_Document());
-      const CString funcName("test_JS");//test_JS为函数名
-      CComVariant varResult;
-      web.CallJScript(funcName,NULL,NULL, &varResult);//varResult为JS执行后返回值，
-      // 可以在“NULL”位置附带任意数量的参数
+      web.CallJScript(jsFuncName, NULL, NULL, &varResult);
       ```
-
+      
       > 参考链接：
       >
       > https://blog.csdn.net/tangyin025/article/details/8274519
-      >
+>
       > https://blog.csdn.net/zt_xcyk/article/details/79729532
-
+   
 4. **JavaScript调用C++函数的方法**（主要用于点击地图获取对应坐标值）
 
    &emsp;&emsp;使用IDispatch接口作为该部分的主要技术支撑，项目中以轻量的方式使用IDispatch技术，若需要实现功能较为复杂或可维护性高的代码，需要围绕IDispatch对代码进行重构。
 
-   该项目中，IDispatch用法步骤如下：
-
-   1. 使MFC生成的对话框类CxxDlg继承IDispatch
-   2. 在CxxDlg中实现需要使用JS调用的C++方法
-   3. 在头文件CxxDlg.h中声明与IDispatch有关的7个方法（见后文代码说明）
-   4. 在源文件CxxDlg.cpp文件中实现与IDispatch有关的7个方法（同上，见后文代码说明）
-   5. 在JS文件中实现调用C++方法的代码
+   当前工程对IDispatch进行了封装，外部代码直接使用JavaScriptAdapter即可。实例化JavaScriptAdapter并注册需要被JavaScript调用的cpp函数即可在js代码中调用cpp函数。
 
    > 参考链接：
    >
