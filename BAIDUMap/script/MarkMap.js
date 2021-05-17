@@ -1,18 +1,12 @@
+
 var map = new BMap.Map("allmap");
-var s = 108.953528;
-var e = 34.267551;
-var pointGloble = new BMap.Point(s, e);
+mainMap();
 
-map.centerAndZoom(pointGloble, 5);
-map.enableScrollWheelZoom(true);
-
-var size = new BMap.Size(10, 20);
 map.addControl(new BMap.CityListControl({
     anchor: BMAP_ANCHOR_TOP_LEFT,
-    offset: size
+    offset: new BMap.Size(10, 20)
 }));
 
-//为动态页面加载所提供的方法
 function mainMap() {
     var point = new BMap.Point(108.953528, 34.267551);
     map.centerAndZoom(point, 5);
@@ -20,9 +14,9 @@ function mainMap() {
     map.enableScrollWheelZoom(true);
 }
 
-function showMap(s, e) {
+function showMap(lng, lat) {
     map.clearOverlays();
-    var point = new BMap.Point(s, e);
+    var point = new BMap.Point(lng, lat);
     map.centerAndZoom(point, 18);
     var marker = new BMap.Marker(point);
     map.addOverlay(marker);
@@ -31,13 +25,10 @@ function showMap(s, e) {
 
 function getCenterPoint() {
     var point = map.getCenter();
-    var lng = point.lng;
-    var lat = point.lat;
-    return lng + "," + lat;
+    return point.lng + "," + point.lat;
 }
 
-//在地图上显示坐标点群，该方法供C++调用
-function pinpoints(pointsStr) {
+function showPoints(pointsStr) {
     var pointsArray = stringToPiontArray(pointsStr);
     if (pointsArray == null || pointsArray.length == 0) return;
     map.clearOverlays();
@@ -49,9 +40,8 @@ function pinpoints(pointsStr) {
     }
 }
 
-//在地图中显示折线
-var polyline = new BMap.Polyline([], { strokeColor: "blue", strokeWeight: 3, strokeOpacity: 0.5 });
-function pinPolyline(pointsStr) {
+function showPolyline(pointsStr) {
+    var polyline = new BMap.Polyline([], { strokeColor: "blue", strokeWeight: 3, strokeOpacity: 0.5 });
     var pointsArray = stringToPiontArray(pointsStr);
     if (pointsArray == null || pointsArray.length == 0) return;
     map.setCenter(pointsArray[0]);
@@ -60,9 +50,8 @@ function pinPolyline(pointsStr) {
     map.addOverlay(polyline);
 }
 
-//地图中显示封闭多边形
-var polygon = new BMap.Polygon([], { strokeColor: "green", fillColor: "green", strokeWeight: 1.0, strokeOpacity: 0.3, fillOpacity: 0.3 });
-function pinPolygon(pointsStr) {
+function showPolygon(pointsStr) {
+    var polygon = new BMap.Polygon([], { strokeColor: "green", fillColor: "green", strokeWeight: 1.0, strokeOpacity: 0.3, fillOpacity: 0.3 });
     var pointsArray = stringToPiontArray(pointsStr);
     if (pointsArray == null || pointsArray.length == 0) return;
     map.setCenter(pointsArray[0]);
@@ -71,7 +60,6 @@ function pinPolygon(pointsStr) {
     map.addOverlay(polygon);
 }
 
-//将包含多组点信息的字符串解析为BMap.Point的数组
 function stringToPiontArray(str) {
     var pointArray = new Array();
     var strs = str.split(";");
@@ -82,20 +70,17 @@ function stringToPiontArray(str) {
     return pointArray;
 }
 
-//传入C++对象，供JS调用C++代码
-var cpp_object;
-function SaveCppObject(obj) {
-    cpp_object = obj;
+
+var cppInvoker;
+function ConfCppInvoker(obj) {
+    cppInvoker = obj;
 }
 
-//地图中右击鼠标，获取对应坐标
 map.addEventListener("rightclick", function (c) {
     showPointValueInHtml(c);
-    cpp_object.ShowPointString(c.point.lng + "," + c.point.lat);
+    cppInvoker.ShowPointString(c.point.lng + "," + c.point.lat);
 });
-function returnMousePoint() {
-    return mousePoint;
-}
+
 var temp = {
     pt: [],
     mk: [],

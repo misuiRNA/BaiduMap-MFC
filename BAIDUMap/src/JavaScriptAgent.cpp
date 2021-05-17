@@ -59,36 +59,36 @@ CExplorer1& JavaScriptAgent::getBrowser()
 HRESULT STDMETHODCALLTYPE JavaScriptAgent::GetIDsOfNames(REFIID riid, LPOLESTR *rgszNames, UINT cNameNum, LCID lcid, DISPID *rgDispId)
 {
     if (cNameNum != 1)
-	{
+    {
         return E_NOTIMPL;
-	}
-	for (auto entity : jsCallCppFuncIdMap)
-	{
-		if (wcscmp(rgszNames[0], entity.first) == 0)
-		{
-			*rgDispId = entity.second;
-			return S_OK;
-		}
-	}
-	return E_NOTIMPL;
+    }
+    for (auto entity : jsCallCppInvokerMap)
+    {
+        if (wcscmp(rgszNames[0], entity.second->funcName) == 0)
+        {
+            *rgDispId = entity.second->funcId;
+            return S_OK;
+        }
+    }
+    return E_NOTIMPL;
 }
 
 HRESULT STDMETHODCALLTYPE JavaScriptAgent::Invoke(DISPID dispIdMember, REFIID riid, LCID lcid, WORD wFlags, DISPPARAMS *pDispParams, VARIANT *pVarResult, EXCEPINFO *pExcepInfo, UINT *puArgErr)
 {
-	if (pDispParams->cArgs != 1 || pDispParams->rgvarg[0].vt != VT_BSTR)
+    if (pDispParams->cArgs != 1 || pDispParams->rgvarg[0].vt != VT_BSTR)
     {
         return E_NOTIMPL;
     }
 
-	if (jsCallCppInvokerMap.find((FunctionIdType)dispIdMember) != jsCallCppInvokerMap.end())
-	{
-		jsCallCppInvokerMap[(FunctionIdType)dispIdMember]->invoke(*pDispParams);
+    if (jsCallCppInvokerMap.find((FunctionIdType)dispIdMember) != jsCallCppInvokerMap.end())
+    {
+        jsCallCppInvokerMap[(FunctionIdType)dispIdMember]->invoke(*pDispParams);
         return S_OK;
-	}
+    }
     else
-	{
+    {
         return E_NOTIMPL;
-	}
+    }
 }
 
 HRESULT STDMETHODCALLTYPE JavaScriptAgent::QueryInterface(REFIID riid, void **ppvObject)
@@ -127,11 +127,10 @@ void JavaScriptAgent::confJavascriptInvoker()
     CComDispatchDriver script;
     document->get_Script(&script);
     CComVariant var(static_cast<IDispatch*>(this));
-    script.Invoke1(L"SaveCppObject", &var);
+    script.Invoke1(L"ConfCppInvoker", &var);
 }
 
 void JavaScriptAgent::regJSCallCppFunc(JSCallCppInvoker* invoker)
 {
-	jsCallCppFuncIdMap[invoker->funcName] = invoker->funcId;
-	jsCallCppInvokerMap[invoker->funcId] = invoker;
+    jsCallCppInvokerMap[invoker->funcId] = invoker;
 }

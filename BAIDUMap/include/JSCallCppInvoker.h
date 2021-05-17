@@ -16,7 +16,7 @@ public:
     FunctionNameType funcName;
 
     JSCallCppInvoker(FunctionNameType funcName, CBAIDUMapDlg* obj, CppFunc funcInvoke);
-    void invoke(DISPPARAMS& params);
+    virtual void invoke(DISPPARAMS& params);
 private:
     CBAIDUMapDlg* obj;
     CppFunc func;

@@ -1,5 +1,4 @@
 #include "stdafx.h"
-#include "BaiduMapApp.h"
 #include "BaiduMapDlg.h"
 #include "afxdialogex.h"
 #include "CAboutDlg.h"
@@ -9,7 +8,7 @@
 #endif
 
 
-CBAIDUMapDlg::CBAIDUMapDlg(CWnd* pParent /*=NULL*/)
+CBAIDUMapDlg::CBAIDUMapDlg(CWnd* pParent)
     : CDialogEx(CBAIDUMapDlg::IDD, pParent)
 {
     m_hIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
@@ -43,8 +42,8 @@ BOOL CBAIDUMapDlg::OnInitDialog()
     CDialogEx::OnInitDialog();
     jsAgent.init("../script/MapPage.html");
 
-    SetDlgItemText(IDC_EDIT1,"108.95357");
-    SetDlgItemText(IDC_EDIT2,"34.26732");
+    SetDlgItemText(IDC_EDIT1, "108.95357");
+    SetDlgItemText(IDC_EDIT2, "34.26732");
 
     ASSERT((IDM_ABOUTBOX & 0xFFF0) == IDM_ABOUTBOX);
     ASSERT(IDM_ABOUTBOX < 0xF000);
@@ -85,11 +84,9 @@ void CBAIDUMapDlg::OnPaint()
 {
     if (IsIconic())
     {
-        CPaintDC dc(this); // 用于绘制的设备上下文
-
+        CPaintDC dc(this);
         SendMessage(WM_ICONERASEBKGND, reinterpret_cast<WPARAM>(dc.GetSafeHdc()), 0);
 
-        // 使图标在工作区矩形中居中
         int cxIcon = GetSystemMetrics(SM_CXICON);
         int cyIcon = GetSystemMetrics(SM_CYICON);
         CRect rect;
@@ -97,7 +94,6 @@ void CBAIDUMapDlg::OnPaint()
         int x = (rect.Width() - cxIcon + 1) / 2;
         int y = (rect.Height() - cyIcon + 1) / 2;
 
-        // 绘制图标
         dc.DrawIcon(x, y, m_hIcon);
     }
     else
@@ -110,7 +106,6 @@ HCURSOR CBAIDUMapDlg::OnQueryDragIcon()
 {
     return static_cast<HCURSOR>(m_hIcon);
 }
-
 
 void CBAIDUMapDlg::OnBnClickedButton1()
 {
@@ -134,21 +129,21 @@ void CBAIDUMapDlg::OnBnClickedButton3()
 {
     CString points;
     pointsEdit.GetWindowText(points);
-    jsAgent.callJSFunc("pinpoints", points);
+    jsAgent.callJSFunc("showPoints", points);
 }
 
 void CBAIDUMapDlg::OnBnClickedButton5()
 {
     CString points;
     pointsEdit.GetWindowText(points);
-    jsAgent.callJSFunc("pinPolyline", points);
+    jsAgent.callJSFunc("showPolyline", points);
 }
 
 void CBAIDUMapDlg::OnBnClickedButton6()
 {
     CString points;
     pointsEdit.GetWindowText(points);
-    jsAgent.callJSFunc("pinPolygon", points);
+    jsAgent.callJSFunc("showPolygon", points);
 }
 
 void CBAIDUMapDlg::ShowPointString(const wchar_t *msg) {
@@ -156,7 +151,7 @@ void CBAIDUMapDlg::ShowPointString(const wchar_t *msg) {
     char* pCStrKey = new char[pSize+1];
     WideCharToMultiByte(CP_OEMCP, 0, msg, wcslen(msg), pCStrKey, pSize, NULL, NULL);
     pCStrKey[pSize] = '\0';
-    SetDlgItemText(IDC_EDIT3,pCStrKey);//IDC_EDIT1你的edit控件ID
+    SetDlgItemText(IDC_EDIT3, pCStrKey);
     delete pCStrKey;
 }
 
@@ -166,7 +161,7 @@ END_EVENTSINK_MAP()
 
 void CBAIDUMapDlg::DocumentCompleteExplorer1(LPDISPATCH pDisp, VARIANT* URL)
 {
-	jsAgent.confJavascriptInvoker();
-	JSCallCppInvoker* invoker = new JSCallCppInvoker(L"ShowPointString", this, &CBAIDUMapDlg::ShowPointString);
-	jsAgent.regJSCallCppFunc(invoker);
+    jsAgent.confJavascriptInvoker();
+    JSCallCppInvoker* invoker = new JSCallCppInvoker(L"ShowPointString", this, &CBAIDUMapDlg::ShowPointString);
+    jsAgent.regJSCallCppFunc(invoker);
 }
